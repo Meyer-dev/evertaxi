@@ -1,0 +1,42 @@
+<ScrollView>
+<FlexboxLayout style="align-items: center;flex-direction: column;background-color: #fff;">
+    <StackLayout style="margin-left: 30; margin-right: 30;flex-grow: 2; vertical-align: center">        
+        <GridLayout rows="65,auto, auto, auto, auto, auto,auto"  class="m-b-15 p-t-35">
+            <label row="0" class="placeholder" text ="placeholder"></label>
+            <Label  *ngIf="!processing" row="1" class="text-center m-t-15 m-b-25 dred " style="font-size: 35;letter-spacing:0.15;color:#487927;" text="EverTaxi"></Label>          
+            <StackLayout class="p-t-20" *ngIf="!processing" row="2" >
+                <TextField class="m-x-20 p-y-5 neoinput"  [(ngModel)]="user.username"
+                   hint="email" [isEnabled]="!processing"
+                   keyboardType="email" autocorrect="false"
+                   autocapitalization="none" maxLength="70"
+                   style="font-size: 22;"
+                   returnKeyType="next" >
+                </TextField>            
+            </StackLayout>
+            <Label  *ngIf="!processing" row="3" style="font-size:24"  [text]="issecure ? '&#xf070;' : '&#xf06e;' " class="fas text-right m-r-5 m-t-5 m-b-5 dred" (tap)="toggleisSecure()" ></Label> 
+            <StackLayout  *ngIf="!processing" row="5"  class="input-field" > 
+                <TextField class="m-x-20 p-y-5 neoinput" [secure]="issecure" [class.neoinput]="issecure || !issecure" [(ngModel)]="user.password"
+                    hint="password" [isEnabled]="!processing"
+                    keyboardType="email" autocorrect="false"
+                    style="font-size: 21;"
+                    autocapitalization="none" 
+                    [returnKeyType]="isLoggingIn ? 'done' : 'next'" >
+                </TextField>               
+            </StackLayout>
+        </GridLayout>
+        <Button  *ngIf="!processing" style="letter-spacing: 0.12;font-size:20;background-color: #487927;color:#fff;border-radius: 15;border:1px"
+            text="Enter" [isEnabled]="!processing" width="150" 
+            class="m-t-20" (tap)="submit(this.user)">
+        </Button> 
+    </StackLayout>
+</FlexboxLayout>
+</ScrollView>
+<StackLayout verticalAlignment="center" *ngIf="processing" row="2" rowspan="3">
+    <LottieView width="300" height="300" [src]="src" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)"></LottieView> 
+    <label style="font-size:25" class="greenText text-center" text="just a sec..."></label>
+</StackLayout>
+
+
+
+
+

@@ -1,13 +1,46 @@
 <ActionBar class="action-bar">
   <NavigationButton visibility="hidden"></NavigationButton>
   <GridLayout columns="50, *">
-    <Label class="action-bar-title" text="Home" colSpan="2"></Label>
-
-    <Label class="fas" text="&#xf0c9;" (tap)="onDrawerButtonTap()"></Label>
-  </GridLayout>
+    <Label class="action-bar-title text-right" style="color:#487927;" fontWeight="bold" (tap)="logout()" text="Log Out" colSpan="2"></Label>
+  </GridLayout> 
 </ActionBar>
-
-<GridLayout class="page__content">
-  <Label class="page__content-icon fas" text="&#xf015;"></Label>
-  <Label class="page__content-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+<StackLayout >
+  <ListView separatorColor="transparent" rippleColor="transparent" [items]="rideHistory" height="100%" style="margin-bottom: 15;" class="list-group-item" >
+     <ng-template let-trip="item">
+       <CardView ripple="false" class="card" radius="35"  elevation="12" >
+         <GridLayout rows="auto,auto,auto,auto,auto" columns="12, *">
+          <StackLayout [ngClass]="{'green': trip.status === 'Complete', 'red' : trip.status === 'Cancelled' }" rowspan="5" col="0"></StackLayout>
+          <Label row="0" col="1" style="font-size: 18;" class="m-r-10 text-right m-b-5 font-weight-bold" textWrap="true">
+            <FormattedString ios:fontFamily="system">
+                <Span textWrap="true" text="{{trip.date}}, " class="m-r-5"></Span>
+                <Span  textWrap="true" text="{{trip.time}}"></Span>
+            </FormattedString>
+          </Label>
+          <Label row="1" col="1" style="font-size: 18;" class="m-l-10" textWrap="true">
+            <FormattedString ios:fontFamily="system">
+                <Span textWrap="true" text="From: " class="fas m-r-5"></Span>
+                <Span  textWrap="true" text="{{trip.fromLocation}}"></Span>
+            </FormattedString>
+          </Label>
+          <Label row="2" col="1" style="font-size: 18;" class="m-l-10" textWrap="true">
+            <FormattedString ios:fontFamily="system">
+                <Span textWrap="true" text="To: " class="fas m-r-5"></Span>
+                <Span  textWrap="true" text="{{trip.toLocation}}"></Span>
+            </FormattedString>
+          </Label>
+          <Label row="3" colSpan="2" style="font-size: 18;" class="m-l-10 text-center"  textWrap="true">
+            <FormattedString ios:fontFamily="system">
+                <Span [ngClass]="{'greenText': trip.status === 'Complete', 'redText' : trip.status === 'Cancelled' }"  textWrap="true" text="{{trip.status}}"></Span>
+            </FormattedString>
+          </Label>
+          <Label row="4" col="1" style="font-size: 18;" class="m-r-10 text-right font-weight-bold" textWrap="true">
+            <FormattedString ios:fontFamily="system">
+                <Span textWrap="true" text="Price: " class="fas m-r-5"></Span>
+                <Span style="font-size: 21;" textWrap="true" style="color:#487927" text="{{trip.price}}"></Span>
+            </FormattedString>
+          </Label>
+         </GridLayout>
+      </CardView>
+     </ng-template>
+   </ListView>
+</StackLayout> 
