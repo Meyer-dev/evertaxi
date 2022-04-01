@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.readFromFile();
   }
 
-  //The below function reads the ride history data from local storage and parses the data into an array
+  //The below function reads the ride history data from local storage and parses the data into an array.
   readFromFile(){
     let documents = knownFolders.documents();
     this.folder = documents.getFolder("evertaxi");
@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
     });
   }
   
+  //The below function logs the user out and prevents routing back into the app.
   logout() {
     confirm({
         title: "Logging Out",

@@ -28,12 +28,10 @@ export class LoginComponent implements OnInit {
   private _lottieView: LottieView;    
 /*//////////////////////////////////////*/
 
-  public opening = true;
   public user: User;
   processing : boolean = false;
   issecure : boolean  = true;
   
-
 constructor(
   private page: Page,
   private loginService: LoginService,
