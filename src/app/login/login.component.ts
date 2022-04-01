@@ -6,7 +6,6 @@ import { registerElement }          from '@nativescript/angular';
 import { LottieView }               from 'nativescript-lottie';
 import { User } from "../Interfaces/user.model";
 import { LoginService } from "../Services/login.service";
-
 registerElement('LottieView', () => <any>LottieView);
  
 @Component({
